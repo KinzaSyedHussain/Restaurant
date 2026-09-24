@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import './style.css';
+
 
 const customers_list = [
     { id: 'egg', name: 'Cutie', img: 'Cutie.png' },
@@ -39,6 +40,14 @@ const generateRandomOrder = () => {
     return selectedItems;
 };
 
+const generateRandomTargets = () => {
+    return {
+        money: (Math.floor(Math.random() * 10) + 1 ) * 10,
+        orders: Math.floor(Math.random() * 10) + 1,
+        burgers: Math.floor(Math.random() * 10) + 2,
+    };
+};
+
 export default function RestaurantGame() {
     const [currentCustomer, setCurrentCustomer] = useState(customers_list[0]);
     const [customerOrder, setCustomerOrder] = useState([menu_list[0]]);
@@ -52,7 +61,22 @@ export default function RestaurantGame() {
     const totalOrderPrice = customerOrder.reduce((sum, item) => sum + item.price, 0);
     const balanceRemaining = totalOrderPrice - cashReceived;
     const isOrderComplete = orderServed && balanceRemaining <= 0;
+    const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+    const bgMusicRef = useRef(null);
 
+    useEffect(() => {
+        bgMusicRef.current = new Audio('bgm.mp3');
+        bgMusicRef.current.loop = true;
+        bgMusicRef.current.volume= 0.3;
+
+        return () => {
+            if (bgMusicRef.current) {
+                bgMusicRef.current.pause();
+            }
+        };
+    }, []);
+
+    
     useEffect(() => {
         if (gameOver || isOrderComplete) return;
 
@@ -68,6 +92,19 @@ export default function RestaurantGame() {
 
         return () => clearInterval(timer);
     }, [timeLeft, gameOver, isOrderComplete]);
+
+    const toggleAudio = () => {
+    if (!bgMusicRef.current) return;
+
+    if (isAudioPlaying) {
+      bgMusicRef.current.pause();
+      setIsAudioPlaying(false);
+    } else {
+      bgMusicRef.current.play()
+        .then(() => setIsAudioPlaying(true))
+        .catch((err) => console.log("Audio playback error:", err));
+    }
+};
 
     const onDragStart = (event, itemId, itemType) => {
         if (gameOver) return;
@@ -154,10 +191,15 @@ export default function RestaurantGame() {
         <div className="restaurant">
             <header className="mainheader">
                 <h1> RESTAURANT </h1>
+                <div style={{display: 'flex', gap: '10px'}}>
+                <button className="utility-button" onClick={toggleAudio}>
+                  {isAudioPlaying ? "🔊 Music On" : "🔇 Music Off"}
+                </button>
                 <button className="utility-button destructive-reset" onClick={resetRestaurant}>
                     Reset Restaurant
                 </button>
-            </header>
+            </div>
+        </header>
 
             <main className="restaurant-stage">
                 <section className="controlsidebar">
