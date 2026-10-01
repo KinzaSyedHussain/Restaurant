@@ -306,3 +306,20 @@ body {
   z-index: 100;
   box-shadow: 0 3px 0 #c0392b;
 }
+
+
+.utility-button {
+  background: linear-gradient(135deg, #fffc49, #e47f0b);
+  color: #ffffff;
+  border: 2px solid #3d3d4e;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 1.00rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+

@@ -76,6 +76,12 @@ export default function RestaurantGame() {
         };
     }, []);
 
+<button 
+  className={`utility-button ${isAudioPlaying ? 'music-active' : ''}`} 
+  onClick={toggleAudio}
+>
+  {isAudioPlaying ? "🔊 Music On" : "🔇 Music Off"}
+</button>
     
     useEffect(() => {
         if (gameOver || isOrderComplete) return;
