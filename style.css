@@ -91,13 +91,10 @@ body {
 }
 
 .brown-desk {
-  background: #8c5832;
-  border: 4px solid #5c381e;
-  border-top: 8px solid #a66e44;
-  width: 100%;
-  height: 90px;
-  border-radius: 6px;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+  background: #914601;
+  width: 150%;
+  height: 5rem;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,17 +114,15 @@ body {
   position: absolute;
   bottom: 20px;
   right: 40px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 2px solid #2c3e50;
-  border-radius: 8px;
+  background: transparent;
   padding: 10px;
   z-index: 10;
 }
 
 .kitchen-shelf h3 {
   margin: 0 0 8px 0;
-  font-size: 11px;
-  text-align: center;
+  font-size: 20px;
+  text-align: 10px;
 }
 
 .menu-grid {
@@ -232,7 +227,6 @@ body {
   background: rgba(255, 255, 255, 0.95);
   padding: 8px;
   border-radius: 8px;
-  border: 2px dashed #2c3e50;
   width: 100%;
 }
 
@@ -310,7 +304,7 @@ body {
 
 .utility-button {
   background: linear-gradient(135deg, #fffc49, #e47f0b);
-  color: #ffffff;
+  color: #000000;
   border: 2px solid #3d3d4e;
   border-radius: 12px;
   padding: 8px 16px;
@@ -322,4 +316,9 @@ body {
   gap: 8px;
 }
 
+.textonmoney {
+  align-items: center;
+  font: optional;
+  size: 10px;
+}
 

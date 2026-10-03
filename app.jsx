@@ -64,6 +64,19 @@ export default function RestaurantGame() {
     const [isAudioPlaying, setIsAudioPlaying] = useState(false);
     const bgMusicRef = useRef(null);
 
+    const toggleAudio = () => {
+        if (!bgMusicRef.current) return;
+    
+        if (isAudioPlaying) {
+          bgMusicRef.current.pause();
+          setIsAudioPlaying(false);
+        } else {
+          bgMusicRef.current.play()
+            .then(() => setIsAudioPlaying(true))
+            .catch((err) => console.log("Audio playback error:", err));
+        }
+    };
+
     useEffect(() => {
         bgMusicRef.current = new Audio('bgm.mp3');
         bgMusicRef.current.loop = true;
@@ -80,7 +93,7 @@ export default function RestaurantGame() {
   className={`utility-button ${isAudioPlaying ? 'music-active' : ''}`} 
   onClick={toggleAudio}
 >
-  {isAudioPlaying ? "🔊 Music On" : "🔇 Music Off"}
+  {isAudioPlaying ? "Music On" : "Music Off"}
 </button>
     
     useEffect(() => {
@@ -98,19 +111,6 @@ export default function RestaurantGame() {
 
         return () => clearInterval(timer);
     }, [timeLeft, gameOver, isOrderComplete]);
-
-    const toggleAudio = () => {
-    if (!bgMusicRef.current) return;
-
-    if (isAudioPlaying) {
-      bgMusicRef.current.pause();
-      setIsAudioPlaying(false);
-    } else {
-      bgMusicRef.current.play()
-        .then(() => setIsAudioPlaying(true))
-        .catch((err) => console.log("Audio playback error:", err));
-    }
-};
 
     const onDragStart = (event, itemId, itemType) => {
         if (gameOver) return;
@@ -199,7 +199,7 @@ export default function RestaurantGame() {
                 <h1> RESTAURANT </h1>
                 <div style={{display: 'flex', gap: '10px'}}>
                 <button className="utility-button" onClick={toggleAudio}>
-                  {isAudioPlaying ? "🔊 Music On" : "🔇 Music Off"}
+                  {isAudioPlaying ? "Music On" : "Music Off"}
                 </button>
                 <button className="utility-button destructive-reset" onClick={resetRestaurant}>
                     Reset Restaurant
@@ -261,6 +261,7 @@ export default function RestaurantGame() {
 
                         {orderServed && balanceRemaining > 0 && !gameOver && (
                             <div className="registerdrawer drawer-animated-entrance" style={{ position: 'relative', margin: 0 }}>
+                                <p className="textonmoney"> Drag the money in the counter</p> 
                                 <div className="moneytagwallet">
                                     {currency_tags.map((tag) => (
                                         <div
@@ -285,6 +286,7 @@ export default function RestaurantGame() {
 
                 <section className="kitchen-shelf">
                     <h3>🍔 Kitchen Menu</h3>
+                    <h2> Drag the items to that customer </h2>
                     <div className="menu-grid">
                         {menu_list.map((food) => (
                             <div
