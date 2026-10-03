@@ -286,7 +286,7 @@ export default function RestaurantGame() {
 
                 <section className="kitchen-shelf">
                     <h3>🍔 Kitchen Menu</h3>
-                    <h2> Drag the items to that customer </h2>
+                    <h2> Drag the items to the customer </h2>
                     <div className="menu-grid">
                         {menu_list.map((food) => (
                             <div
