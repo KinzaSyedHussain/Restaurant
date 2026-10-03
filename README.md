@@ -13,3 +13,6 @@ You will have 15 second to complete the order and also take money from the custo
 1. React
 2. CSS
 
+# Want to try!
+Click here: https://restaurant-theta-coral.vercel.app/
+
