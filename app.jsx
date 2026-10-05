@@ -207,47 +207,47 @@ export default function RestaurantGame() {
             </div>
         </header>
 
-            <main className="restaurant-stage">
-                <section className="controlsidebar">
-                    <div className="posterminal">
-                        <h3>📟 Counter </h3>
-                        <div className={`timer-display ${timeLeft <= 3 ? 'timer-warning' : ''}`} style={{
-                            fontSize: '1.2rem',
-                            fontWeight: 'bold',
-                            color: timeLeft <= 3 ? '#ff4d4d' : '#00ffcc',
-                            marginBottom: '10px'
-                        }}> Time Left: {timeLeft}s </div>
+        <main className="restaurant-stage">
+  <section className="controlsidebar">
+    <div className="posterminal"
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={onDrawerDrop}
+    >
+      <div 
+        className={`timer-display ${timeLeft <= 3 ? 'timer-warning' : ''}`} 
+        style={{fontSize: '2rem', fontWeight: 'bold',color: timeLeft <= 3 ? '#ff4d4d' : '#00ffcc',
+          marginBottom: '10px'
+        }}
+      > 
+        Time Left: {timeLeft}s 
+      </div>
 
-                        <div className="digitaldisplay">
-                            {`Total Earnings: $${earnings}\nOrder Price: $${totalOrderPrice}\nPaid: $${cashReceived}\n\nStatus: ${
-                                gameOver 
-                                    ? 'GAME OVER! ❌' 
-                                    : !orderServed 
-                                    ? `Serving Items (${servedItems.length}/${customerOrder.length})` 
-                                    : balanceRemaining > 0 
-                                    ? 'Collect Cash!' 
-                                    : 'Order Complete! 🎉'
-                            }`}
-                        </div>
-                        {gameOver ? (
-                            <button className="paytriggertag bill-btn" style={{ width: '100%', marginTop: '10px', backgroundColor: '#ff4d4d' }} onClick={resetRestaurant}>
-                                🔄 Try Again
-                            </button>
-                        ) : isOrderComplete ? (
-                            <button className="paytriggertag bill-btn" style={{ width: '100%', marginTop: '10px' }} onClick={serveNextCustomer}>
-                                Next Customer →
-                            </button>
-                        ) : (
-                            <div
-                                className="counterscanner counter-open"
-                                onDragOver={(e) => e.preventDefault()}
-                                onDrop={onDrawerDrop}
-                            >
-                                <img src="COUNTER_OPEN.png" alt="Open Register" className="countergraphics" />
-                            </div>
-                        )}
-                    </div>
-                </section>
+      <div className="machinescreen" style={{ position: 'relative' }}>
+        <img
+          src="COUNTER_OPEN.png" alt="Cash Register" className="screengraphics"
+        />
+
+        <div className="digitaldisplay" style={{ whiteSpace: 'pre-line' }}>
+          {`Total Earnings: $${earnings}\nOrder Price: $${totalOrderPrice}\nPaid: $${cashReceived}\n\nStatus: ${
+            gameOver 
+              ? 'GAME OVER!' 
+              : !orderServed 
+              ? `Serving Items (${servedItems.length}/${customerOrder.length})` 
+              : balanceRemaining > 0 
+              ? 'Collect Cash!' 
+              : 'Order Complete! 🎉'
+          }`}
+
+          {gameOver ? (
+            <button className="paytriggertag bill-btn" onClick={resetRestaurant}> Try Again! </button>
+          ) : isOrderComplete ? (
+            <button className="paytriggertags bill-btn" onClick={serveNextCustomer}> Next Customer </button>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  </section>
+
                 
                 <section className="customer-area" onDragOver={(e) => e.preventDefault()} onDrop={onCutomerDrop}>
                     <div className="speech-bubble">
@@ -285,7 +285,7 @@ export default function RestaurantGame() {
                 </section>
 
                 <section className="kitchen-shelf">
-                    <h3>🍔 Kitchen Menu</h3>
+                    <h3>Kitchen Menu</h3>
                     <h2> Drag the items to the customer </h2>
                     <div className="menu-grid">
                         {menu_list.map((food) => (
