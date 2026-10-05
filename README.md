@@ -1,5 +1,6 @@
 # The Restaurant game!
-<img width="1350" height="591" alt="image" src="https://github.com/user-attachments/assets/4a50403a-6c05-45b1-ae90-621acf75e3b6" />
+
+<img width="1356" height="596" alt="image" src="https://github.com/user-attachments/assets/b474eb92-065d-4361-96ef-b45315efb9d6" />
 
 
 
@@ -16,3 +17,8 @@ You will have 15 second to complete the order and also take money from the custo
 # Want to try!
 Click here: https://restaurant-theta-coral.vercel.app/
 
+# How to run?
+
+Just run this command
+
+```npm run dev```
