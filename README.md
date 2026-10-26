@@ -6,8 +6,8 @@
 
 ## How to play!
 
-So, basically, an egg customer will come and give you order. You just need to drag the food and give to the customer that is asking for. But there is a twist!
-You will have 15 second to complete the order and also take money from the customer before the time runs out.
+So, basically, an egg customer will come and give you an order. You just need to drag the food and give it to the customer who is asking for. But there is a twist!
+You will have 15 seconds to complete the order and also take money from the customer before the time runs out.
 
 
 ## Made with
